@@ -1,0 +1,66 @@
+
+class BankAccount:
+
+    def __init__(self, name, pin, balance):
+        self.name = name
+        self.__pin = pin
+        self.__balance = balance
+
+    def deposit(self):
+        entered_pin = input("Enter PIN: ")
+
+        if entered_pin == self.__pin:
+            amount = float(input("Enter deposit amount: "))
+
+            if amount > 0:
+                self.__balance = self.__balance + amount
+                print("Deposit successful")
+            else:
+                print("Invalid amount")
+        else:
+            print("Incorrect PIN")
+
+    def withdraw(self):
+        entered_pin = input("Enter PIN: ")
+
+        if entered_pin == self.__pin:
+            amount = float(input("Enter withdrawal amount: "))
+
+            if amount > 0 and amount <= self.__balance:
+                self.__balance = self.__balance - amount
+                print("Withdrawal successful")
+            else:
+                print("Insufficient balance or invalid amount")
+        else:
+            print("Incorrect PIN")
+
+    def display_balance(self):
+        entered_pin = input("Enter PIN: ")
+
+        if entered_pin == self.__pin:
+            print("Account holder:", self.name)
+            print("Balance:", self.__balance)
+        else:
+            print("Incorrect PIN")
+
+
+name = input("Enter account holder name: ")
+pin = input("Create a PIN: ")
+balance = float(input("Enter initial balance: "))
+
+account = BankAccount(name, pin, balance)
+
+print("\n1. Deposit")
+print("2. Withdraw")
+print("3. Display Balance")
+
+choice = input("Enter your choice: ")
+
+if choice == "1":
+    account.deposit()
+elif choice == "2":
+    account.withdraw()
+elif choice == "3":
+    account.display_balance()
+else:
+    print("Invalid choice")
